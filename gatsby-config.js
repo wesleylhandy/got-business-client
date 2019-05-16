@@ -5,39 +5,47 @@ require("dotenv").config({
 })
 
 const siteUrl =
-  process.env.URL || process.env.DEPLOY_URL || "http://10.100.43.57:8000"
+  process.env.URL || process.env.DEPLOY_URL || "http://localhost:8000"
 
 module.exports = {
   pathPrefix: process.env.CI ? `/${name}` : `/`,
   siteMetadata: { // initialize site metadata for SEO
     title: `Got Business?`,
-    description: ``,
+    description: `An App for Connecting with Newly Established Businesses in Your Area`,
     author: {
         name: `Wesley L. Handy`, 
     }, 
     siteUrl,
     siteVerification: ``,
     social: { //usernames for SEO
-      twitter: "",
-      linkedin: ""
+      twitter: "wesleylhandy",
+      linkedin: "wesleylhandy"
     },
     socialLinks: { // profile URLS for social links, include https://
-        twitter: "",
-        linkedin: "",
+        twitter: "https://twitter.com/WesleyLHandy",
+        linkedin: "https://www.linkedin.com/in/wesleylhandy/",
         facebook: "",
-        stackOverflow: "",
-        github: "",
+        stackOverflow: "https://stackoverflow.com/users/6917743/wlh",
+        github: "https://github.com/wesleylhandy",
         instagram: "",
         youtube: "",
-        email: "", //include mailto:
-        phone: "" //include tel:
+        email: "mailto:wesley@wearecreativ.media", //include mailto:
+        phone: "tel:9195543504" //include tel:
     },
     keywords: [
+      "Gatsby",
+      "Infinite Scroll",
+      "MongoDB",
+      "gatsby-source-mongodb",
+      "Virginia Beach Business Licenses",
+      "local business",
+      "who owns this business"
     ],
     organization: { //update with relevant personal data
-      name: "", 
-      url: ""
-    }
+      name: "Wesley L. Handy", 
+      url: "https://www.wesleylhandy.net"
+    },
+    lang: "en"
   },
   plugins: [
     `gatsby-plugin-sitemap`,
@@ -141,19 +149,26 @@ module.exports = {
     //     }
     //   }
     // },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+        omitGoogleFont: false,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: ``, // UPDATE
-        short_name: ``, // UPDATE
+        name: `Got Business?`, // UPDATE
+        short_name: `Got Business?`, // UPDATE
         start_url: `/`,
         background_color: `#fff`,
-        theme_color: `#ffd42a`, // UPDATE
+        theme_color: `navy`, // UPDATE
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the project.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the project.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

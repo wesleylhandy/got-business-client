@@ -205,6 +205,7 @@ const detailsQuery = graphql`
           name
           url
         }
+        lang
       }
     }
     logo:file(relativePath:{ eq: "images/gatsby-icon.png"}) {

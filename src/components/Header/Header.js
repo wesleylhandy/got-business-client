@@ -5,12 +5,12 @@ import styled from "@emotion/styled"
 import HeaderImage from "./HeaderImage"
 import { FaChevronDown, FaTimes } from "react-icons/fa"
 
-const menuBreakPoint = "565px" // adjust based on the number of nav links
+const menuBreakPoint = "767px" // adjust based on the number of nav links
 
 const StyledHeader = styled.header`
   width: 100%;
   margin: 0;
-  padding: 10px 0;
+  padding: 0;
   background: #f1f1f1;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
@@ -43,20 +43,17 @@ const Navigation = styled.nav`
     cursor: pointer;
     display: block;
     align-self: center;
-    color: #000;
+    color: navy;
     text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-weight: 700;
-    font-style: normal;
+    font-family: 'Bungee Shade', cursive;
     font-size: 24px;
     padding: 0 20px;
     line-height: 100px;
     text-align: center;
   }
   a:hover {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: navy;
     color: white;
-    text-shadow: 2px 2px black;
   }
   @media screen and (max-width: ${menuBreakPoint}) {
     display: none;
@@ -110,15 +107,13 @@ const DropDownLinks = styled.div`
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 5;
   text-align: right;
-  margin-top: 10px;
-  right: -10px;
+  margin-top: 0;
+  right: 0;
   width: 100vw;
   cursor: pointer;
   white-space: nowrap;
   a {
-    font-family: Arial, sans-serif;
-    font-weight: 700;
-    font-style: normal;
+    font-family: 'Bungee Shade', cursive;
     font-size: 24px;
     color: black;
     background-color: #f1f1f1;
@@ -127,10 +122,11 @@ const DropDownLinks = styled.div`
     display: block;
     cursor: pointer;
     width: 100%;
+    transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
   }
   a:hover {
-    color: rgb(255, 212, 42);
-    background-color: rgba(0, 0, 0, 0.05);
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 `
 
@@ -138,6 +134,7 @@ const NavLinks = () => (
   <>
     <Link to="/">Home</Link>
     {/** Add more Nav Links here. Feel free to construct multi-level menu as desired **/}
+    <Link to="/categories/">Categories</Link>
     <Link to="/businesses/">Businesses</Link>
   </>
 )
@@ -159,6 +156,7 @@ const Header = ({ siteTitle }) => {
               id="dropcheck"
               name="dropcheck"
               type="checkbox"
+              aria-label={checked ? "Click to Hide Menu" : "Click to Show Menu" }
               onClick={() => setCheck(!checked)}
             />
             <DropDownIcon htmlFor="dropcheck">

@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Image from 'gatsby-image'
 import styled from '@emotion/styled'
+import { Global, css } from "@emotion/core"
 import {FaRegCopyright, FaStackOverflow, FaTwitter, FaLinkedin, FaGithubSquare, FaRegEnvelope, FaYoutube, FaFacebook, FaInstagram, FaPhone} from 'react-icons/fa'
 
 import Header from "./Header/Header"
@@ -99,6 +100,45 @@ const Layout = ({ children }) => (
       const { site: { siteMetadata: { title, siteUrl, author: { name }, socialLinks: { twitter, linkedin, stackOverflow, email, github, facebook, instagram, youtube, phone } } }, footerIcon } = data
       return (
         <>
+          <Global
+            styles={css`
+              h1 > a {
+                text-decoration: none;
+              }
+              a {
+                background-color: transparent;
+                -webkit-text-decoration-skip: objects;
+                color: navy;
+              }
+              a[href^="/"],
+              a[href*="http"],
+              a[href*="mailto"],
+              a[href*="tel:"] {
+                transition: color 200ms ease-in-out,
+                  text-shadow 200ms ease-in-out;
+              }
+              a[href^="/"]:hover {
+                color: dodgerblue;
+              }
+              a[href*="http"]:hover,
+              a[href*="mailto"]:hover,
+              a[href*="tel:"]:hover {
+                color: dodgerblue;
+              }
+              a:active,
+              a:hover {
+                outline-width: 0;
+              }
+              nav > a {
+                transition: none !important;
+              }
+              @media screen and (max-width: 767px) {
+                body {
+                  margin-top: 100px;
+                }
+              }
+            `}
+          />
           <Header siteTitle={title} />
           <Container>
             <Main>{children}</Main>

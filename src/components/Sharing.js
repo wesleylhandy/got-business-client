@@ -10,7 +10,6 @@ const SharingContainer = styled.div`
     align-items: center;
     padding: 20px;
     margin: 20px 0;
-    max-width: 500px;
     flex-wrap: wrap;
     background: #f1f1f1;
     border: 1px solid #ccc;

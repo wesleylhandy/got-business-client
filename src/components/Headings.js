@@ -1,28 +1,25 @@
 import React from "react"
 import styled from "@emotion/styled"
 
-const H1 = styled.h1`
-  font-family: Arial, sans-serif;
-  font-weight: 700;
-  font-style: normal;
-`
+// const H1 = styled.h1`
+//   font-family: Arial, sans-serif;
+//   font-weight: 700;
+//   font-style: normal;
+// `
 export const PrimaryHeading = ({children, style = {}}) => (
-    <H1 style={style}>{children}</H1>
+    <h1 style={style}>{children}</h1>
 )
 
-const H2 = styled.h2`
-  font-family: Arial, sans-serif;
-  font-weight: 700;
-  font-style: normal;
-`
+// const H2 = styled.h2`
+//   font-family: Arial, sans-serif;
+//   font-weight: 700;
+//   font-style: normal;
+// `
 export const SubHeading = ({children, style = {}}) => (
-    <H2 style={style}>{children}</H2>
+    <h2 style={style}>{children}</h2>
 )
 
 const H3 = styled.h3`
-  font-family: Arial, sans-serif;
-  font-weight: 700;
-  font-style: normal;
   margin: 5px 0;
   &:after {
     content: '';
@@ -38,9 +35,6 @@ export const TertiaryHeading = ({children, style = {}}) => (
 )
 
 const H4 = styled.h4`
-  font-family: Arial, sans-serif;
-  font-weight: 700;
-  font-style: normal;
   margin: 5px 0 20px 0;
 `
 export const QuartenaryHeading = ({children, style = {}}) => (
