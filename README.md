@@ -1,15 +1,5 @@
-<style>
-  div>img {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-  }
-</style>
-
 <div style="max-width: 980px; margin: 0 auto;">
-  
-  ![local businesses](./src/images/local-business.jpg)
-
+  <img src="./src/images/local-business.jpg" alt="local business" style="display:block; width: 100%"/>
 </div>
 
 This app is a proof of concept for a bigger project in the works for promoting local business.
