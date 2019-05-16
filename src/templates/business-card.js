@@ -60,7 +60,7 @@ const CardElement = styled.div`
 `
 
 export default function Template(props) {
-  const { data, pageContext } = props
+  const { data, pageContext, location } = props
 //   console.log({data, pageContext})
   const { 
     mongodbLocalbusinessesLicenses: {
@@ -109,9 +109,13 @@ export default function Template(props) {
           pathname={pathName}
           isBlogPost={false}
         />
-        <GoBack>
-          <Link to={props.location.state.prevPath}><FaArrowLeft/>Go Back</Link>
-        </GoBack>
+        {
+          location && location.state && location.state.prevPath && (
+            <GoBack>
+              <Link to={location.state.prevPath}><FaArrowLeft/>Go Back</Link>
+            </GoBack>
+          )
+        }
         <Card>
           <CardHeader>
             <PrimaryHeading style={{color:"navy"}}>{trade_name_of_business}</PrimaryHeading>
