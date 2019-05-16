@@ -13,7 +13,7 @@ function Map({ options, onMount, className }) {
       script.type = `text/javascript`
       script.src =
         `https://maps.google.com/maps/api/js?key=` +
-        process.env.GOOGLE_MAPS_API_KEY
+        process.env.GATSBY_GOOGLE_MAPS_API_KEY
       const headScript = document.getElementsByTagName(`script`)[0]
       headScript.parentNode.insertBefore(script, headScript)
       script.addEventListener(`load`, onLoad)
