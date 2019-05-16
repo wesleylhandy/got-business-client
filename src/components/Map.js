@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useCallback } from 'react'
 function Map({ options, onMount, className }) {
   const props = { ref: useRef(), className }
   const onLoad = () => {
-    const map = new window.google.maps.Map(props.ref.current, options)
+    const map = typeof window !== `undefined` ? new window.google.maps.Map(props.ref.current, options) : ''
     onMount && onMount(map)
   }
 

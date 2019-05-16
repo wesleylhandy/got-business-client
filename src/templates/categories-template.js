@@ -18,14 +18,14 @@ function Categories({ licenses, license, category }) {
         const { geocoded_column } = link
         if (geocoded_column) {
           const { coordinates } = geocoded_column
-          const marker = new window.google.maps.Marker({
+          const marker = typeof window !== `undefined` ? new window.google.maps.Marker({
             map,
             position: {lat: coordinates[1], lng: coordinates[0]},
             label: `${index + 1}`,
             icon: index + 1 === active ? `https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png` : ``,
             title: link.trade_name_of_business,
-          })
-          const infoWindow = new window.google.maps.InfoWindow({
+          }) : ''
+          const infoWindow = typeof window !== `undefined` ? new window.google.maps.InfoWindow({
             content: `<div>
               <div>${link.trade_name_of_business}</div>
               <div>${link.business_mailing_address}, ${link.mailing_city}, ${link.mailing_state}, ${link.mailing_zip_code}</div>
@@ -33,11 +33,11 @@ function Categories({ licenses, license, category }) {
               <div>Owned by ${link.owner_name_of_business}</div>
               <span>Double-Click To View More</span>
             </div>`
-          })
+          }): ''
           marker.addListener(`dblclick`, () => {
             navigate(`/businesses/${link.trade_name_of_business.toLowerCase().replace(/\s/g, "-")}`, {
               state: { 
-                prevPath: window.location.pathname 
+                prevPath: typeof window !== `undefined` ? window.location.pathname : ''
               }
             })
           })
@@ -78,7 +78,7 @@ function Categories({ licenses, license, category }) {
                   <Link 
                     to={`/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-")}`}
                     state={{ 
-                      prevPath: window.location.pathname 
+                      prevPath: typeof window !== `undefined`? window.location.pathname : ''
                     }}
                   >
                     {trade_name_of_business}

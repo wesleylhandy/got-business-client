@@ -42,10 +42,12 @@ function Businesses({ data, pageContext }) {
     }
   }
   
-  window.onscroll = () => {
-    if ( isLoading || !hasMore ) return;
-    if ( window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight ) {
-      initLoadBusinesses(loadBusinesses);
+  if (typeof window !== `undefined`) {
+    window.onscroll = () => {
+      if ( isLoading || !hasMore ) return;
+      if ( window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight ) {
+        initLoadBusinesses(loadBusinesses);
+      }
     }
   }
 
@@ -64,7 +66,7 @@ function Businesses({ data, pageContext }) {
                   <Link 
                     to={`/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-")}`}
                     state={{ 
-                      prevPath: window.location.pathname 
+                      prevPath: typeof window !== `undefined` ? window.location.pathname : ''
                     }}
                   >
                     {trade_name_of_business}
