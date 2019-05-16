@@ -50,7 +50,7 @@ function Businesses({data, pageContext, location}){
             </div>`
           }) : ''
           marker.addListener(`dblclick`, () => {
-            navigate(`/businesses/${node.trade_name_of_business.toLowerCase().replace(/\s/g, "-")}`, {
+            navigate(`/businesses/${node.trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[\?#]/g, "")}`, {
               state: { 
                 prevPath: typeof window !== `undefined` ? window.location.pathname : ''
               }
@@ -120,7 +120,7 @@ function Businesses({data, pageContext, location}){
                 <CategoryListItem key={govId} index={idx + 1} className={idx + 1 === active ? "active" : "normal"} onMouseOver={e=>setActive(idx+1)}>
                   <SubHeading>
                     <Link 
-                      to={`/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-")}`}
+                      to={`/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[\?#]/g, "")}`}
                       state={{ 
                         prevPath: typeof window !== `undefined` ? window.location.pathname : ''
                       }}

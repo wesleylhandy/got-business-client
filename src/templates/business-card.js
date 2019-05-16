@@ -150,7 +150,7 @@ export default function Template(props) {
         <Navigation>
           <PrevLink>
             {prev && (
-              <Link to={`/businesses/${prev.trade_name_of_business.toLowerCase().replace(/\s/g, "-")}`}>
+              <Link to={`/businesses/${prev.trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[\?#]/g, "")}`}>
                 <BackIcon /> {prev.trade_name_of_business}
               </Link>
             )}
@@ -165,7 +165,7 @@ export default function Template(props) {
           </HomeLink>
           <NextLink>
             {next && (
-              <Link className="link next" to={`/businesses/${next.trade_name_of_business.toLowerCase().replace(/\s/g, "-")}`}>
+              <Link className="link next" to={`/businesses/${next.trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[\?#]/g, "")}`}>
                 {next.trade_name_of_business} <ForwardIcon />
               </Link>
             )}
