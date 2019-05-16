@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link, navigate, graphql } from "gatsby"
 import { FaHome, FaTags, FaArrowLeft, FaChevronRight, FaChevronLeft } from "react-icons/fa"
 import Map from '../components/Map'
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 import { LinkContainer } from "../components/Containers"
 import { SubHeading, QuartenaryHeading } from "../components/Headings"
 import { CategoryListItem } from "../components/Categories"

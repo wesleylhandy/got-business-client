@@ -5,7 +5,7 @@ import { FaChevronRight, FaChevronLeft, FaLocationArrow, FaPhone, FaArrowLeft } 
 import { graphql, Link } from "gatsby"
 
 import styled from "@emotion/styled"
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 import SEO from "../components/SEO/Seo"
 import Sharing from "../components/Sharing"
 import { BusinessCardContainer, CategoryContainer } from '../components/Containers'

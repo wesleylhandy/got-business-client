@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import { FaTags  } from "react-icons/fa"
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 import { LinkContainer } from "../components/Containers"
 import { PrimaryHeading, SubHeading } from "../components/Headings"
 import { CategoryListItem, CategoryAlpaLinks } from "../components/Categories"

@@ -3,7 +3,7 @@ import { Link, navigate } from "gatsby"
 import { FaHome, FaTags } from "react-icons/fa"
 import Map from '../components/Map'
 
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 import { LinkContainer } from "../components/Containers"
 import { PrimaryHeading, SubHeading } from "../components/Headings"
 import { CategoryListItem, CategoryListButtons } from "../components/Categories"
