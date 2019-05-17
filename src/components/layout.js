@@ -138,11 +138,6 @@ const Layout = ({ children }) => (
               nav > a:hover {
                 color: white;
               }
-              @media screen and (max-width: 767px) {
-                body {
-                  margin-top: 100px;
-                }
-              }
             `}
           />
           <Header siteTitle={title} />
