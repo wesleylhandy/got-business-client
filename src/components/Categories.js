@@ -48,7 +48,9 @@ export const CategoryListButtons = styled.ul`
   align-items: center;
   flex-wrap: wrap;
   margin: 30px -10px;
-  padding-left: 1.45rem;
+  @media screen and (max-width: 540px) {
+    justify-content: center;
+  }
   li {
     box-sizing: border-box;
     display: inline;
@@ -63,6 +65,10 @@ export const CategoryListButtons = styled.ul`
       display: block;
       width: 100%;
       text-decoration:none;
+      @media screen and (max-width: 540px) {
+        padding: 10px;
+        font-size: 15px;
+      }
     }
     a:hover {
       text-shadow: none;

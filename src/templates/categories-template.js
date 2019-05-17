@@ -35,7 +35,7 @@ function Categories({ licenses, license, category }) {
             </div>`
           }): ''
           marker.addListener(`dblclick`, () => {
-            navigate(`/businesses/${link.trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[\?#]/g, "")}`, {
+            navigate(`/businesses/${link.trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[?#]/g, "")}`, {
               state: { 
                 prevPath: typeof window !== `undefined` ? window.location.pathname : ''
               }
@@ -76,7 +76,7 @@ function Categories({ licenses, license, category }) {
               <CategoryListItem key={govId} index={idx + 1} className={idx + 1 === active ? "active" : "normal"} onMouseOver={e=>setActive(idx+1)}>
                 <SubHeading>
                   <Link 
-                    to={`/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[\?#]/g, "")}`}
+                    to={`/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[?#]/g, "")}`}
                     state={{ 
                       prevPath: typeof window !== `undefined`? window.location.pathname : ''
                     }}
@@ -106,11 +106,18 @@ function Categories({ licenses, license, category }) {
     <div>
       <PrimaryHeading>Categories</PrimaryHeading>
       <CategoryListButtons>
-        {Object.keys(licenses).map(categoryName => (
-          <CategoryListItem key={categoryName}>
-            <Link to={`/categories/${categoryName.toLowerCase().replace(/\s/g, "-")}`}>{categoryName}</Link>
-          </CategoryListItem>
-        ))}
+        {
+          Object.keys(licenses).sort((a, b)=>{
+            const first = a.toLowerCase(), second = b.toLowerCase()
+            if (first < second) return -1
+            if (first > second) return 1
+            return 0
+          }).map(categoryName => (
+            <CategoryListItem key={categoryName}>
+              <Link to={`/categories/${categoryName.toLowerCase().replace(/\s/g, "-")}`}>{categoryName}</Link>
+            </CategoryListItem>
+          ))
+        }
       </CategoryListButtons>
       <LinkContainer>
         <Link to="/businesses/">

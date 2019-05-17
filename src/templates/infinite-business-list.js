@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import { FaTags  } from "react-icons/fa"
 import Layout from "../components/layout"
@@ -41,15 +41,22 @@ function Businesses({ data, pageContext }) {
       setLoading(false)
     }
   }
-  
-  if (typeof window !== `undefined`) {
-    window.onscroll = () => {
-      if ( isLoading || !hasMore ) return;
-      if ( window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight ) {
-        initLoadBusinesses(loadBusinesses);
-      }
+
+  const handleScroll = () => {
+    if ( isLoading || !hasMore ) return;
+    if ( window && ( window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight ) ){
+      initLoadBusinesses(loadBusinesses);
     }
   }
+  
+  useEffect(() => {
+    window && window.addEventListener('scroll', handleScroll)
+    window && window.addEventListener('resize', handleScroll)
+    return () => {
+      window && window.removeEventListener('scroll', handleScroll)
+      window && window.removeEventListener('resize', handleScroll)
+    };
+  }, [businesses, isLoading, hasMore])
 
   return (
     <div>
@@ -64,7 +71,7 @@ function Businesses({ data, pageContext }) {
               <CategoryListItem key={govId} index={idx + 1} className={idx + 1 === active ? "active" : "normal"} onMouseOver={e=>setActive(idx+1)}>
                 <SubHeading>
                   <Link 
-                    to={`/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[\?#]/g, "")}`}
+                    to={`/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[?#]/g, "")}`}
                     state={{ 
                       prevPath: typeof window !== `undefined` ? window.location.pathname : ''
                     }}

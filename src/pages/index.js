@@ -54,7 +54,7 @@ const IndexPage = () => (
             author={name}
           />
           <PrimaryHeading style={{marginBottom: "0"}}>{title}</PrimaryHeading>
-          <SubHeading style={{margin: "5px 0 30px 0"}}>{description}</SubHeading>
+          <SubHeading style={{margin: "5px 0 30px 0", fontFamily: "'Open Sans', Arial, sans-serif", fontWeight: "600"}}>{description}</SubHeading>
           <Img fluid={bodyImg.childImageSharp.fluid} alt="Local emblazened on a downtown Marquee"/>
           <p>This app is a proof of concept for a bigger project in the works for promoting local business.</p> 
           <p>The current app is built from a large dataset a collection of Business Licenses awarded in 2018 in the City of Virginia Beach. I am currently storing a copy of the dataset in a MongoDB collection, which is the source for this app. I have a Node.js API for gathering updates to this dataset and transforming for this project.</p>

@@ -47,6 +47,9 @@ const FooterText = styled.div`
 
 const Pipe = styled.span`
   margin: 0 2px;
+  @media screen and (max-width: 530px) {
+    display: none;
+  }
 `
 const InnerFlex = styled.span`
   display: flex;
@@ -132,6 +135,9 @@ const Layout = ({ children }) => (
               nav > a {
                 transition: none !important;
               }
+              nav > a:hover {
+                color: white;
+              }
               @media screen and (max-width: 767px) {
                 body {
                   margin-top: 100px;
@@ -149,7 +155,7 @@ const Layout = ({ children }) => (
                   {new Date().getFullYear()} {name}
                 </span>
                 <Pipe>|</Pipe>
-                <Link to="/">{siteUrl}</Link>
+                <Link to="/" style={{textAlign: "center"}}>{siteUrl}</Link>
                 <Pipe>|</Pipe>
                 <InnerFlex>
                   Built using&nbsp;

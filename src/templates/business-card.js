@@ -13,7 +13,7 @@ import { PrimaryHeading } from '../components/Headings'
 import { GoBack, Navigation, PrevLink, HomeLink, NextLink } from '../components/InnerNavigation'
 
 const Card = styled.article`
-  width: calc(100% - 40px);
+  width: 100%;
   margin: 20px 0;
   padding: 20px;
   border: 1px solid #ccc;
@@ -83,7 +83,7 @@ export default function Template(props) {
     image.alt = ""
   }
   const { next, prev } = pageContext
-  const pathName = `/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-")}`
+  const pathName = `/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[?#]/g, "")}`
   const BackIcon = FaChevronLeft
   const ForwardIcon = FaChevronRight
   const classifications = business_classification.split(" / ").map((classification, ind) => {
@@ -150,7 +150,7 @@ export default function Template(props) {
         <Navigation>
           <PrevLink>
             {prev && (
-              <Link to={`/businesses/${prev.trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[\?#]/g, "")}`}>
+              <Link to={`/businesses/${prev.trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[?#]/g, "")}`}>
                 <BackIcon /> {prev.trade_name_of_business}
               </Link>
             )}
@@ -165,7 +165,7 @@ export default function Template(props) {
           </HomeLink>
           <NextLink>
             {next && (
-              <Link className="link next" to={`/businesses/${next.trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[\?#]/g, "")}`}>
+              <Link className="link next" to={`/businesses/${next.trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[?#]/g, "")}`}>
                 {next.trade_name_of_business} <ForwardIcon />
               </Link>
             )}
