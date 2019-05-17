@@ -37,7 +37,7 @@ Maps on the site are generated from Google Maps. This site is generated via Gats
 
 4. Google Maps
 
-    The project also incorporates Google maps, which is always fun and easy to include, though adding the appropriate maps Script was a challenge since even using `react-hemlet` the script wasn't loading before the compoent rendered and I received errors. For reference, here is the Map component (credit to [Janosh Riebesell](courtesy of https://janosh.io/blog/google-maps+react-hooks)):
+    The project also incorporates Google maps, which is always fun and easy to include, though adding the appropriate maps Script was a challenge since even using `react-hemlet` the script wasn't loading before the compoent rendered and I received errors. For reference, here is the Map component (credit to [Janosh Riebesell](https://janosh.io/blog/google-maps+react-hooks)):
     
 ```javascript
 import React, { useEffect, useRef, useCallback } from 'react'
