@@ -42,10 +42,14 @@ function Businesses({ data, pageContext }) {
     }
   }
 
-  const is_touch_device = () => (window 
-    && (('ontouchstart' in window)
-    || (navigator.MaxTouchPoints > 0)
-    || (navigator.msMaxTouchPoints > 0)));
+  const is_touch_device = () => {
+    const isTouch = (window 
+      && (('ontouchstart' in window)
+      || (window.DocumentTouch && document instanceof window.DocumentTouch)
+      || (navigator.msMaxTouchPoints > 0)));
+    // console.log({isTouch})
+    return isTouch;
+  }
 
   const handleScroll = () => {
     if ( isLoading || !hasMore ) return;
@@ -53,23 +57,21 @@ function Businesses({ data, pageContext }) {
       initLoadBusinesses(loadBusinesses);
     }
   }
+
+  const handleTouchEnd = (e) => {
+    e.preventDefault(); 
+    handleScroll();
+  }
   
   useEffect(() => {
-    if ( window && is_touch_device() ) {
-      window.addEventListener('touchmove', handleScroll)
-    } else {
-      window.addEventListener('scroll', handleScroll)
-      window.addEventListener('resize', handleScroll)
-    }
-    
+    is_touch_device();
+    window && window.addEventListener('touchend', handleTouchEnd)
+    window && window.addEventListener('scroll', handleScroll)
+    window && window.addEventListener('resize', handleScroll)
     return () => {
-      if ( window && is_touch_device() ) {
-        window.removeEventListener('touchmove', handleScroll)
-      } else {
-        window.removeEventListener('scroll', handleScroll)
-        window.removeEventListener('resize', handleScroll)
-      }
-      
+      window && window.removeEventListener('touchend', handleTouchEnd)
+      window && window.removeEventListener('scroll', handleScroll)
+      window && window.removeEventListener('resize', handleScroll)
     };
   }, [businesses, isLoading, hasMore])
 
