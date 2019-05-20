@@ -53,7 +53,7 @@ function Businesses({ data, pageContext }) {
 
   const handleScroll = () => {
     if ( isLoading || !hasMore ) return;
-    if ( window && ( window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight ) ){
+    if ( window && ( window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight ) ){
       initLoadBusinesses(loadBusinesses);
     }
   }
