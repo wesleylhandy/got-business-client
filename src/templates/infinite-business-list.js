@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { FaTags  } from "react-icons/fa"
 import Layout from "../components/layout"
 import { LinkContainer } from "../components/Containers"
@@ -42,6 +42,11 @@ function Businesses({ data, pageContext }) {
     }
   }
 
+  const is_touch_device = () => (window 
+    && (('ontouchstart' in window)
+    || (navigator.MaxTouchPoints > 0)
+    || (navigator.msMaxTouchPoints > 0)));
+
   const handleScroll = () => {
     if ( isLoading || !hasMore ) return;
     if ( window && ( window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight ) ){
@@ -50,11 +55,21 @@ function Businesses({ data, pageContext }) {
   }
   
   useEffect(() => {
-    window && window.addEventListener('scroll', handleScroll)
-    window && window.addEventListener('resize', handleScroll)
+    if ( window && is_touch_device() ) {
+      window.addEventListener('touchmove', handleScroll)
+    } else {
+      window.addEventListener('scroll', handleScroll)
+      window.addEventListener('resize', handleScroll)
+    }
+    
     return () => {
-      window && window.removeEventListener('scroll', handleScroll)
-      window && window.removeEventListener('resize', handleScroll)
+      if ( window && is_touch_device() ) {
+        window.removeEventListener('touchmove', handleScroll)
+      } else {
+        window.removeEventListener('scroll', handleScroll)
+        window.removeEventListener('resize', handleScroll)
+      }
+      
     };
   }, [businesses, isLoading, hasMore])
 
