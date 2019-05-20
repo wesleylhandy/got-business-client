@@ -20,41 +20,21 @@ function Businesses({ data, pageContext }) {
   const TagsIcon = FaTags
   
   const [ active, setActive ] = useState(0)
-  const [ isLoading, setLoading ] = useState(false)
-  const [ hasMore, setMore ] = useState(true)
+  const [ hasMore, setMore ] = useState(businessList.length > 10)
   const [ businesses, addBusinesses ] = useState([...businessList.slice(0, 10)])
 
-
-  const initLoadBusinesses = (cb) => {
-    setLoading(true)
-    cb(true);
-  }
-
-  const loadBusinesses = (loading) => {
-    if (loading) {
-      const currentLength = businesses.length
-      const more = currentLength < businessList.length
-      const nextBusinesses = more ? businessList.slice(currentLength, currentLength + 20) : []
-      // console.log({currentLength, more, nextBusinesses})
-      setMore(true)
-      addBusinesses ([...businesses, ...nextBusinesses])
-      setLoading(false)
-    }
-  }
-
-  const is_touch_device = () => {
-    const isTouch = (window 
-      && (('ontouchstart' in window)
-      || (window.DocumentTouch && document instanceof window.DocumentTouch)
-      || (navigator.msMaxTouchPoints > 0)));
-    // console.log({isTouch})
-    return isTouch;
+  const loadBusinesses = () => {
+    const currentLength = businesses.length
+    const more = currentLength < businessList.length
+    const nextBusinesses = more ? businessList.slice(currentLength, currentLength + 20) : []
+    setMore(more)
+    addBusinesses([...businesses, ...nextBusinesses])
   }
 
   const handleScroll = () => {
-    if ( isLoading || !hasMore ) return;
+    if ( !hasMore ) return;
     if ( window && ( window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight ) ){
-      initLoadBusinesses(loadBusinesses);
+      loadBusinesses()
     }
   }
 
@@ -64,7 +44,6 @@ function Businesses({ data, pageContext }) {
   }
   
   useEffect(() => {
-    is_touch_device();
     window && window.addEventListener('touchend', handleTouchEnd)
     window && window.addEventListener('scroll', handleScroll)
     window && window.addEventListener('resize', handleScroll)
@@ -73,7 +52,7 @@ function Businesses({ data, pageContext }) {
       window && window.removeEventListener('scroll', handleScroll)
       window && window.removeEventListener('resize', handleScroll)
     };
-  }, [businesses, isLoading, hasMore])
+  }, [businesses, hasMore])
 
   return (
     <div>
@@ -102,10 +81,6 @@ function Businesses({ data, pageContext }) {
           })
         }
       </ul>
-      {
-        isLoading &&
-          <div>Loading...</div>
-      }
       {
         !hasMore &&
           <div>All Businesses Loaded!</div>
