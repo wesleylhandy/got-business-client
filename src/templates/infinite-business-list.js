@@ -39,8 +39,12 @@ function Businesses({ data, pageContext }) {
   }
 
   const handleTouchEnd = (e) => {
-    e.preventDefault(); 
-    handleScroll();
+    if (e.target.localName !== "a") {
+      e.preventDefault(); 
+      handleScroll();
+    } else {
+      console.log("click")
+    }
   }
   
   useEffect(() => {
@@ -65,7 +69,7 @@ function Businesses({ data, pageContext }) {
           businesses.map(({node: { govId, trade_name_of_business, business_phone_number }}, idx) => {
             return (
               <CategoryListItem key={govId} index={idx + 1} className={idx + 1 === active ? "active" : "normal"} onMouseOver={e=>setActive(idx+1)}>
-                <SubHeading>
+                <SubHeading style={{pointerEvents: "auto"}}>
                   <Link 
                     to={`/businesses/${trade_name_of_business.toLowerCase().replace(/\s/g, "-").replace(/[?#]/g, "")}`}
                     state={{ 
