@@ -1,14 +1,17 @@
 import styled from "@emotion/styled"
 
 export const CategoryListItem = styled.li`
+  pointer-events:auto;
   list-style: none;
   position: relative;
   padding: 10px;
   color: navy;
   transition: color 200ms ease-in-out, text-shadow 200ms ease-in-out;
+  z-index:1;
   a {
     color: navy;
     transition: color 200ms ease-in-out;
+    z-index:3;
   }
   a:hover {
     color: #fff;
@@ -93,7 +96,10 @@ export const CategoryAlpaLinks = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin: 20px -10px;
+  z-index: 1;
+  pointer-events:auto;
   a {
     margin: 10px;
+    z-index: 3;
   }
 `
